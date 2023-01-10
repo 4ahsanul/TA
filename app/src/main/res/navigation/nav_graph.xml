@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.fimo.aidentist.ui.navigation.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="com.fimo.aidentist.ui.navigation.information.InformationFragment"
+        android:label="fragment_information"
+        tools:layout="@layout/fragment_information" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.fimo.aidentist.ui.navigation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <activity
+        android:id="@+id/cameraActivity"
+        android:name="com.fimo.aidentist.ui.navigation.camera.CameraActivity"
+        android:label="activity_camera"
+        tools:layout="@layout/activity_camera" />
+    <fragment
+        android:id="@+id/messageFragment"
+        android:name="com.fimo.aidentist.ui.navigation.message.MessageFragment"
+        android:label="fragment_message"
+        tools:layout="@layout/fragment_message" />
+    <activity
+        android:id="@+id/cameraResultActivity"
+        android:name="com.fimo.aidentist.ui.navigation.camera.CameraResultActivity"
+        android:label="activity_camera_result"
+        tools:layout="@layout/activity_camera_result" />
+    <fragment
+        android:id="@+id/analisisFragment"
+        android:name="com.fimo.aidentist.ui.analisis.AnalisisFragment"
+        android:label="AnalisisFragment" />
+</navigation>
