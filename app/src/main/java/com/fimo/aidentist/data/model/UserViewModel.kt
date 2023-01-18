@@ -44,9 +44,4 @@ class UserViewModel(private val userRepo: UserRepository): ViewModel() {
     fun loadUser(pref: UserPreference): LiveData<UserDataModel> {
         return pref.getUser().asLiveData()
     }
-
-
-
-
-
 }

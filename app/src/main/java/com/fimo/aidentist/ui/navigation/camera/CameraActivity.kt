@@ -50,7 +50,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var classifier: Classifier
     private lateinit var fAuth: FirebaseAuth
     private val db = Firebase.firestore
-    lateinit var sharedPref: PreferenceHelper
+    private lateinit var sharedPref: PreferenceHelper
 
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -193,7 +193,7 @@ class CameraActivity : AppCompatActivity() {
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
-        cameraProviderFuture.addListener(Runnable {
+        cameraProviderFuture.addListener({
             //Used to bind lifecycle of camera to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 

@@ -12,7 +12,6 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import com.fimo.aidentist.MainActivity
 import com.fimo.aidentist.data.UserSign
 import com.fimo.aidentist.databinding.ActivityLoginBinding

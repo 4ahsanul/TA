@@ -6,17 +6,10 @@
         android:icon="@drawable/ic_home_coco"
         android:title="Home" />
     <item
-        android:id="@+id/messageFragment"
-        android:icon="@drawable/ic_chat_hd"
-        android:title="Message" />
-    <item
         android:id="@+id/cameraResultActivity"
         android:icon="@drawable/ic_camera_hd"
         android:title="Camera" />
-    <item
-        android:id="@+id/informationFragment"
-        android:icon="@drawable/ic_notification_coco"
-        android:title="Information" />
+
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_user_coco"

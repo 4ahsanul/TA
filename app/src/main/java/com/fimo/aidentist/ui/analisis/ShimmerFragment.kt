@@ -10,7 +10,6 @@ import com.fimo.aidentist.R
 
 class ShimmerFragment : Fragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -18,6 +17,4 @@ class ShimmerFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_shimmer, container, false)
     }
-
-
 }

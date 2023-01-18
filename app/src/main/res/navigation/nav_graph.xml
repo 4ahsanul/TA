@@ -10,11 +10,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/informationFragment"
-        android:name="com.fimo.aidentist.ui.navigation.information.InformationFragment"
-        android:label="fragment_information"
-        tools:layout="@layout/fragment_information" />
-    <fragment
         android:id="@+id/profileFragment"
         android:name="com.fimo.aidentist.ui.navigation.profile.ProfileFragment"
         android:label="fragment_profile"
@@ -24,11 +19,6 @@
         android:name="com.fimo.aidentist.ui.navigation.camera.CameraActivity"
         android:label="activity_camera"
         tools:layout="@layout/activity_camera" />
-    <fragment
-        android:id="@+id/messageFragment"
-        android:name="com.fimo.aidentist.ui.navigation.message.MessageFragment"
-        android:label="fragment_message"
-        tools:layout="@layout/fragment_message" />
     <activity
         android:id="@+id/cameraResultActivity"
         android:name="com.fimo.aidentist.ui.navigation.camera.CameraResultActivity"

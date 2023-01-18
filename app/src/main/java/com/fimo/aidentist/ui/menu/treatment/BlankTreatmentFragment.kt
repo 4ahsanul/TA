@@ -75,7 +75,7 @@ class BlankTreatmentFragment : Fragment(), DialogInterface.OnClickListener {
                     }
 
                 } else {
-                    Log.d(ContentValues.TAG, "ASU")
+                    Log.d(ContentValues.TAG, "Check")
 
                 }
             }
@@ -84,7 +84,6 @@ class BlankTreatmentFragment : Fragment(), DialogInterface.OnClickListener {
 
             }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

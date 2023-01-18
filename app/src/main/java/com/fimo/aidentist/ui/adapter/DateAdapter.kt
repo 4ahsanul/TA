@@ -7,8 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fimo.aidentist.R
 
-class DateAdapter : RecyclerView.Adapter<DateAdapter.ViewHolder>(){
-
+class DateAdapter : RecyclerView.Adapter<DateAdapter.ViewHolder>() {
     private val hari = arrayOf(
         "Sun",
         "Mon",
@@ -29,13 +28,15 @@ class DateAdapter : RecyclerView.Adapter<DateAdapter.ViewHolder>(){
         "7"
     )
 
-    inner class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-        val dateItem:TextView = view.findViewById(R.id.hari)
-        val tanggalItem:TextView = view.findViewById(R.id.tanggal)
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val dateItem: TextView = view.findViewById(R.id.hari)
+        val tanggalItem: TextView = view.findViewById(R.id.tanggal)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateAdapter.ViewHolder =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_row_date,parent,false))
+        ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_row_date, parent, false)
+        )
 
     override fun onBindViewHolder(holder: DateAdapter.ViewHolder, position: Int) {
         holder.dateItem.text = hari[position]
@@ -43,5 +44,4 @@ class DateAdapter : RecyclerView.Adapter<DateAdapter.ViewHolder>(){
     }
 
     override fun getItemCount(): Int = hari.size
-
 }

@@ -14,7 +14,6 @@ import com.fimo.aidentist.R
 import com.fimo.aidentist.data.local.UserPreference
 import com.fimo.aidentist.databinding.FragmentHomeBinding
 import com.fimo.aidentist.ui.analisis.*
-import com.fimo.aidentist.ui.menu.doctor.DoctorActivity
 import com.fimo.aidentist.ui.menu.treatment.DailyTreatmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -44,16 +43,7 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener {
             activity?.startActivity(intent)
         }
 
-        binding.medicineReminder.setOnClickListener {
-            Toast.makeText(activity, "Fitur belum tersedia :)", Toast.LENGTH_SHORT).show()
-        }
-
-        binding.dentistAppointment.setOnClickListener {
-            val intent = Intent(activity, DoctorActivity::class.java)
-            activity?.startActivity(intent)
-        }
         return view
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
