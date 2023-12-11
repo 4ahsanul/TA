@@ -7,21 +7,6 @@
     android:fillViewport="true"
     tools:context=".ui.navigation.profile.ProfileFragment">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/cornflower"
-        android:clickable="true"
-        android:contentDescription="@string/edit_button"
-        android:focusable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_edit_hd"
-        app:tint="@color/white" />
-
     <RelativeLayout
         android:id="@+id/profileInfo"
         android:layout_width="match_parent"
@@ -51,81 +36,97 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <TextView
-                    android:id="@+id/tv_name"
+                <EditText
+                    android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
                     android:fontFamily="@font/nunito_medium"
                     android:gravity="center"
+                    android:hint="@string/name_hint"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/avatar"
-                    android:text="@string/dummy_user_name"
                     tools:text="@tools:sample/full_names" />
 
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp">
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/ic_email_coco"
-                        android:contentDescription="@string/email_hint"/>
+                    <EditText
+                        android:id="@+id/et_mail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:fontFamily="@font/nunito_light"
+                        android:inputType="textEmailAddress"
+                        android:text="@string/email_hint"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tv_location"
+                    <ImageView
+                        android:id="@+id/icUnverified"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito_light"
-                        android:text="@string/email_hint" />
-                </LinearLayout>
+                        android:src="@drawable/ic_unverified"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/et_mail"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/et_mail"
+                        app:layout_constraintTop_toTopOf="@+id/et_mail" />
 
-                <LinearLayout
+                    <ImageView
+                        android:id="@+id/icVerified"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_verified"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/et_mail"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/et_mail"
+                        app:layout_constraintTop_toTopOf="@+id/et_mail" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/ic_phone_coco"
-                        android:contentDescription="@string/phone"/>
-
-                    <TextView
-                        android:id="@+id/tv_phone"
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/et_phone"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:enabled="false"
                         android:fontFamily="@font/nunito_light"
-                        android:text="@string/phone" />
-                </LinearLayout>
+                        android:inputType="phone"
+                        android:text="@string/phone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/ic_user_coco"
-                        android:contentDescription="@string/gender"/>
-
-                    <TextView
-                        android:id="@+id/tv_gender"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito_light"
-                        android:text="@string/gender" />
-                </LinearLayout>
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/light_cornflower"
+                    android:text="Simpan Profile"
+                    android:textAllCaps="false" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -143,47 +144,26 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonHistory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/light_cornflower"
         android:drawableStart="@drawable/ic_history_coco"
         android:fontFamily="@font/nunito_medium"
-        android:text="@string/transaction_history"
+        android:text="@string/history"
         android:textAllCaps="false"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/buttonLogout"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/buttonLogout"
         app:layout_constraintTop_toBottomOf="@+id/profileInfo" />
 
-    <Button
-        android:id="@+id/buttonOther"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/light_cornflower"
-        android:drawableStart="@drawable/ic_other_coco"
-        android:fontFamily="@font/nunito_medium"
-        android:text="@string/other"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
     <Button
         android:id="@+id/buttonLogout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="64dp"
         android:backgroundTint="@color/pastel_pink"
         android:fontFamily="@font/nunito_medium"
@@ -193,6 +173,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonHistory" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

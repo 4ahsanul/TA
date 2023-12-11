@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import com.fimo.aidentist.R
 import com.fimo.aidentist.databinding.FragmentBlankTreatmentBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -28,23 +27,37 @@ class BlankTreatmentFragment : Fragment(), DialogInterface.OnClickListener {
         // Inflate the layout for this fragment
         _binding = FragmentBlankTreatmentBinding.inflate(inflater, container, false)
         val view = binding.root
-        fAuth = Firebase.auth
-
-        val docRef = db.collection("users").document("user")
+        val user = FirebaseAuth.getInstance().currentUser
+        val docRef = db.collection("users").document(user!!.uid)
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document.data?.get("disease") != null) {
                     checkDisease()
-
                 } else {
-                    Log.d(ContentValues.TAG, "No such document")
+                    Log.d(ContentValues.TAG, "No such document for the current user")
                     replaceFragment(ScanTreatmentFragment())
                 }
             }
             .addOnFailureListener { exception ->
-                Log.d(ContentValues.TAG, "get failed with ", exception)
+                Log.d(ContentValues.TAG, "get failed with", exception)
                 replaceFragment(ScanTreatmentFragment())
             }
+
+//        val docRef = db.collection("users").document("user")
+//        docRef.get()
+//            .addOnSuccessListener { document ->
+//                if (document.data?.get("disease") != null) {
+//                    checkDisease()
+//
+//                } else {
+//                    Log.d(ContentValues.TAG, "No such document")
+//                    replaceFragment(ScanTreatmentFragment())
+//                }
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.d(ContentValues.TAG, "get failed with ", exception)
+//                replaceFragment(ScanTreatmentFragment())
+//            }
         return view
     }
 

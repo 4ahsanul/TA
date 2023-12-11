@@ -17,22 +17,4 @@ class PreferenceHelper(context: Context) {
         editor.putString(key, value)
             .apply()
     }
-
-    fun getString(key: String): String? {
-        return sharedPref.getString(key, null)
-    }
-
-    fun put(key: String, value: Boolean) {
-        editor.putBoolean(key, value)
-            .apply()
-    }
-
-    fun getBoolean(key: String): Boolean {
-        return sharedPref.getBoolean(key, false)
-    }
-
-    fun clear() {
-        editor.clear()
-            .apply()
-    }
 }

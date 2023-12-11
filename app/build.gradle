@@ -113,6 +113,10 @@ dependencies {
     //CircleImageview
     implementation "de.hdodenhof:circleimageview:3.1.0"
 
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //GMS
     apply plugin: 'com.google.gms.google-services'
 
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
