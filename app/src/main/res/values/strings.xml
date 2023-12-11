@@ -177,6 +177,8 @@
     <string name="retake">Retake</string>
     <string name="check">Check</string>
     <string name="close_camera">Close Camera</string>
+    <string name="repassword_hint">Retype Password</string>
+    <string name="history">History Check Gigi</string>
 
     <!--  Database Local  -->
     <string-array name="name">

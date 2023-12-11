@@ -26,18 +26,6 @@
             android:name=".ui.navigation.camera.CameraResultActivity"
             android:exported="false" />
         <activity
-            android:name="com.fimo.aidentist.ui.menu.doctor.DoctorActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.fimo.aidentist.ui.menu.consultation.OfflineConsultationActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.fimo.aidentist.ui.menu.consultation.OnlineConsultationActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.fimo.aidentist.ui.menu.doctor.DoctorProfileActivity"
-            android:exported="false" />
-        <activity
             android:name="com.fimo.aidentist.ui.menu.treatment.DailyTreatmentActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />

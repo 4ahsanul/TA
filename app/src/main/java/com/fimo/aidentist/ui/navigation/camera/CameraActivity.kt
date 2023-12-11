@@ -28,6 +28,7 @@ import com.fimo.aidentist.helper.PreferenceHelper
 import com.fimo.aidentist.ml.Classifier
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.io.File
@@ -48,9 +49,10 @@ class CameraActivity : AppCompatActivity() {
     private val mModelPath = "model.tflite"
     private val mLabelPath = "labels.txt"
     private lateinit var classifier: Classifier
+
     private lateinit var fAuth: FirebaseAuth
     private val db = Firebase.firestore
-    lateinit var sharedPref: PreferenceHelper
+    private lateinit var sharedPref: PreferenceHelper
 
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -59,7 +61,7 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initClassifier()
-        fAuth = Firebase.auth
+        fAuth = FirebaseAuth.getInstance()
         sharedPref = PreferenceHelper(this)
 
         binding.check.visibility = View.GONE
@@ -89,14 +91,19 @@ class CameraActivity : AppCompatActivity() {
                 "disease" to result.get(0).title,
                 "confidence" to result.get(0).confidence
             )
-            db.collection("users").document("user")
-                .set(dis)
-                .addOnSuccessListener {
-                    Log.d(ContentValues.TAG, "Berhasil Menyimpan Data")
-                }
-                .addOnFailureListener { e ->
-                    Log.w(ContentValues.TAG, "Error adding document", e)
-                }
+            val user = FirebaseAuth.getInstance().currentUser
+            if (user != null) {
+                FirebaseFirestore.getInstance().collection("users").document(user.uid)
+                    .set(dis)
+                    .addOnSuccessListener {
+                        Log.d(ContentValues.TAG, "Successfully saved data for user ${user.uid}")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(ContentValues.TAG, "Error adding document for user ${user.uid}", e)
+                    }
+            } else {
+                Log.w(ContentValues.TAG, "No user is currently signed in.")
+            }
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
@@ -193,7 +200,7 @@ class CameraActivity : AppCompatActivity() {
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
-        cameraProviderFuture.addListener(Runnable {
+        cameraProviderFuture.addListener({
             //Used to bind lifecycle of camera to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
