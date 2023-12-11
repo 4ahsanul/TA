@@ -30,6 +30,9 @@ Features :
 
 ##### Notes </br>
 * This Final Project focusing on building application, for the Machine Learning or AI i'm using from the my friend's Final Project Andre Citro Febrilian Lanyak
+* For accuracy, it is still considered not accurate, but during the testing, it has been accompanied by an expert, is a dentist directly.
+* This project is actually not active anymore due to the use of Firebase as the database, and it has account usage limits.
+* It is not published on the Play Store because the stored data is dental data, which is the personal information of a **real patient**. Therefore, to avoid undesired circumstances, the application is not published on the Play Store.
 * This app project case is from my previous program in Merdeka Belajar Kampus Merdeka (MBKM) Bangkit 2022. I have asked the Capstone Group, MBKM Mentor, MBKM Facilitator, for permission to take this Captone Project for my Final Project. </br>
 
 **Special Thanks For MBKM Capstone Group** <br>
