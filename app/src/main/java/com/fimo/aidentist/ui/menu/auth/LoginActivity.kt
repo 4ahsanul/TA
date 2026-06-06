@@ -11,18 +11,13 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.fimo.aidentist.MainActivity
-import com.fimo.aidentist.data.AuthViewModel
 import com.fimo.aidentist.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var fAuth: FirebaseAuth
-    private var viewModel: AuthViewModel? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,16 +25,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         fAuth = FirebaseAuth.getInstance()
-
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(this@LoginActivity.application)
-        ).get(AuthViewModel::class.java)
-        viewModel!!.userData!!.observe(this) { firebaseUser ->
-            if (firebaseUser != null) {
-                TODO()
-            }
-        }
 
         setupAction()
         setupView()
@@ -101,13 +86,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
             loginUser(email, pass)
-            //viewModel!!.signIn(email, pass)
         }
         binding.tvSignup.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
         }
-        setupView()
     }
 
     private fun loginUser(email: String, pass: String) {
@@ -121,7 +104,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun setupView() {
         @Suppress("DEPRECATION")

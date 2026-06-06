@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "93158735119",
+    "project_id": "dent-ai-78379",
+    "storage_bucket": "dent-ai-78379.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93158735119:android:8abd8c400d6c2e7bd4527a",
+        "android_client_info": {
+          "package_name": "com.fimo.aidentist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93158735119-77gdntu66eoi0toju1qru73qfj097c7f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fimo.aidentist",
+            "certificate_hash": "61d8f53bab3464b41674721a5251a2daa1ab386a"
+          }
+        },
+        {
+          "client_id": "93158735119-91jlell5jtumpvqvlavohl2o821naoaq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6JoN-XRHidl0GffJJYyOlOepMd3yuZlA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93158735119-91jlell5jtumpvqvlavohl2o821naoaq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
