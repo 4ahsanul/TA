@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.fimo.aidentist.databinding.FragmentBlankAnalisisBinding
-import com.fimo.aidentist.ui.navigation.camera.CameraResultActivity
+import com.fimo.aidentist.ui.camera.CameraResultActivity
 
 
 class BlankAnalisisFragment : Fragment() {

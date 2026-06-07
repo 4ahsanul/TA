@@ -1,4 +1,4 @@
-package com.fimo.aidentist.ui.menu.auth
+package com.fimo.aidentist.ui.auth
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -10,17 +10,17 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.fimo.aidentist.R
+import com.fimo.aidentist.data.model.Resource
 import com.fimo.aidentist.databinding.ActivitySignUpBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
-    private lateinit var fAuth: FirebaseAuth
+    private val authViewModel: AuthViewModel by viewModels()
 
     private val genderItems = listOf("Laki - Laki", "Perempuan")
 
@@ -29,12 +29,31 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fAuth = FirebaseAuth.getInstance()
-
         playAnimation()
         setForm()
         setupAction()
         setupView()
+        observeSignUpState()
+    }
+
+    private fun observeSignUpState() {
+        lifecycleScope.launch {
+            authViewModel.signUpState.collect { state ->
+                when (state) {
+                    is Resource.Success -> {
+                        Toast.makeText(this@SignUpActivity, "Register Success", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(this@SignUpActivity, state.message, Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Loading -> { /* TODO: show loading indicator */ }
+                    null -> { /* idle state */ }
+                }
+            }
+        }
     }
 
     private fun playAnimation() {
@@ -72,31 +91,6 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun firebaseSignUp() {
-        val email = binding.emailEditText.text.toString()
-        val password = binding.passwordEditText.text.toString()
-        val repass = binding.repassEditText.text.toString()
-
-        if (email.isNotEmpty() && password.isNotEmpty() && repass.isNotEmpty()) {
-            if (password == repass) {
-                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else {
-                Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(this, "Tidak boleh ada kolom yang kosong", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-
     private fun setForm() {
         val genderAdapter = ArrayAdapter(this, R.layout.item_list_dropdown, genderItems)
         //(binding.jenisEditTextLayout.editText as? AutoCompleteTextView)?.setAdapter(genderAdapter)
@@ -108,9 +102,20 @@ class SignUpActivity : AppCompatActivity() {
             finish()
         }
         binding.buttonSignUp.setOnClickListener {
-            firebaseSignUp()
+            val email = binding.emailEditText.text.toString().trim()
+            val password = binding.passwordEditText.text.toString().trim()
+            val repass = binding.repassEditText.text.toString().trim()
+
+            if (email.isNotEmpty() && password.isNotEmpty() && repass.isNotEmpty()) {
+                if (password == repass) {
+                    authViewModel.signUp(email, password)
+                } else {
+                    Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "Tidak boleh ada kolom yang kosong", Toast.LENGTH_SHORT).show()
+            }
         }
-        setupView()
     }
 
     private fun setupView() {

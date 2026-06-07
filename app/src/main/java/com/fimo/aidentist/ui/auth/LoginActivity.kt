@@ -1,4 +1,4 @@
-package com.fimo.aidentist.ui.menu.auth
+package com.fimo.aidentist.ui.auth
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -11,24 +11,46 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.fimo.aidentist.MainActivity
+import com.fimo.aidentist.data.model.Resource
 import com.fimo.aidentist.databinding.ActivityLoginBinding
-import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var fAuth: FirebaseAuth
+    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fAuth = FirebaseAuth.getInstance()
-
         setupAction()
         setupView()
         playAnimation()
+        observeSignInState()
+    }
+
+    private fun observeSignInState() {
+        lifecycleScope.launch {
+            authViewModel.signInState.collect { state ->
+                when (state) {
+                    is Resource.Success -> {
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(this@LoginActivity, state.message, Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Loading -> { /* TODO: show loading indicator */ }
+                    null -> { /* idle state */ }
+                }
+            }
+        }
     }
 
     private fun playAnimation() {
@@ -85,23 +107,11 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            loginUser(email, pass)
+            authViewModel.signIn(email, pass)
         }
         binding.tvSignup.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
-        }
-    }
-
-    private fun loginUser(email: String, pass: String) {
-        fAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) {
-            if (it.isSuccessful)
-                Intent(this@LoginActivity, MainActivity::class.java).also {
-                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(it)
-                } else {
-                Toast.makeText(this, "${it.exception?.message}", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 

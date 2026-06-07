@@ -1,8 +1,7 @@
-package com.fimo.aidentist.ui.navigation.camera
+package com.fimo.aidentist.ui.camera
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.BitmapDrawable
@@ -13,24 +12,23 @@ import android.util.Rational
 import android.view.Surface
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.fimo.aidentist.MainActivity
 import com.fimo.aidentist.R
+import com.fimo.aidentist.data.model.Resource
 import com.fimo.aidentist.databinding.ActivityCameraBinding
 import com.fimo.aidentist.databinding.LayoutCameraBinding
 import com.fimo.aidentist.helper.Constant
 import com.fimo.aidentist.helper.PreferenceHelper
 import com.fimo.aidentist.ml.Classifier
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.launch
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,9 +48,8 @@ class CameraActivity : AppCompatActivity() {
     private val mLabelPath = "labels.txt"
     private lateinit var classifier: Classifier
 
-    private lateinit var fAuth: FirebaseAuth
-    private val db = Firebase.firestore
     private lateinit var sharedPref: PreferenceHelper
+    private val cameraViewModel: CameraViewModel by viewModels()
 
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -61,7 +58,6 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initClassifier()
-        fAuth = FirebaseAuth.getInstance()
         sharedPref = PreferenceHelper(this)
 
         binding.check.visibility = View.GONE
@@ -80,34 +76,8 @@ class CameraActivity : AppCompatActivity() {
         }
 
         binding.check.setOnClickListener {
-
             val bitmap = ((binding.image).drawable as BitmapDrawable).bitmap
-
-            val result = classifier.recognizeImage(bitmap)
-            runOnUiThread { Toast.makeText(this, result.get(0).title, Toast.LENGTH_SHORT).show() }
-
-            sharedPref.put(Constant.PREF_EMAIL, result.get(0).title)
-            val dis = hashMapOf(
-                "disease" to result.get(0).title,
-                "confidence" to result.get(0).confidence
-            )
-            val user = FirebaseAuth.getInstance().currentUser
-            if (user != null) {
-                FirebaseFirestore.getInstance().collection("users").document(user.uid)
-                    .set(dis)
-                    .addOnSuccessListener {
-                        Log.d(ContentValues.TAG, "Successfully saved data for user ${user.uid}")
-                    }
-                    .addOnFailureListener { e ->
-                        Log.w(ContentValues.TAG, "Error adding document for user ${user.uid}", e)
-                    }
-            } else {
-                Log.w(ContentValues.TAG, "No user is currently signed in.")
-            }
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
+            cameraViewModel.classifyAndSave(bitmap, classifier)
         }
 
         //Request Camera Permissions
@@ -140,6 +110,32 @@ class CameraActivity : AppCompatActivity() {
 
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
+
+        observeClassificationState()
+    }
+
+    private fun observeClassificationState() {
+        lifecycleScope.launch {
+            cameraViewModel.classificationState.collect { state ->
+                when (state) {
+                    is Resource.Success -> {
+                        state.data?.let { result ->
+                            Toast.makeText(this@CameraActivity, result.title, Toast.LENGTH_SHORT).show()
+                            sharedPref.put(Constant.PREF_EMAIL, result.title)
+                        }
+                        val intent = Intent(this@CameraActivity, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(this@CameraActivity, state.message, Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Loading -> { /* TODO: show loading indicator */ }
+                    null -> { /* idle state */ }
+                }
+            }
+        }
     }
 
     private fun initClassifier() {
@@ -174,7 +170,6 @@ class CameraActivity : AppCompatActivity() {
                     val savedUri = Uri.fromFile(photoFile)
                     onImageCaptured(savedUri)
                     val msg = "Photo capture succeeded: $savedUri"
-                    //Toast.makeText(this@CameraActivity, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
                 }
             })
@@ -214,13 +209,9 @@ class CameraActivity : AppCompatActivity() {
             imageCapture = ImageCapture.Builder()
                 .build()
 
-            //Select back camera as a default
-            //val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
             val viewPort = ViewPort.Builder(Rational(350, 170), Surface.ROTATION_0).build()
             val useCaseGroup = UseCaseGroup.Builder()
                 .addUseCase(preview)
-                //.addUseCase(imageAnalyzer)
                 .addUseCase(imageCapture!!)
                 .setViewPort(viewPort)
                 .build()
@@ -263,7 +254,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "AddTaskDialog"
+        private const val TAG = "CameraActivity"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)

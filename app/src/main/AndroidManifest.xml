@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AIDentist">
         <activity
-            android:name=".ui.navigation.camera.CameraResultActivity"
+            android:name=".ui.camera.CameraResultActivity"
             android:exported="false" />
         <activity
             android:name="com.fimo.aidentist.ui.menu.treatment.DailyTreatmentActivity"
@@ -39,13 +39,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.navigation.camera.CameraActivity"
+            android:name=".ui.camera.CameraActivity"
             android:exported="false" />
         <activity
-            android:name="com.fimo.aidentist.ui.menu.auth.SignUpActivity"
+            android:name="com.fimo.aidentist.ui.auth.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name="com.fimo.aidentist.ui.menu.auth.LoginActivity"
+            android:name="com.fimo.aidentist.ui.auth.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -1,4 +1,4 @@
-package com.fimo.aidentist.ui.navigation.camera
+package com.fimo.aidentist.ui.camera
 
 import android.Manifest
 import android.content.Intent

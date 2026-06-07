@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.navigation.camera.CameraResultActivity">
+    tools:context=".ui.camera.CameraResultActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
