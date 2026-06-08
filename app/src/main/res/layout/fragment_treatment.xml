@@ -20,10 +20,10 @@
             android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="?attr/selectableItemBackground"
             android:contentDescription="@string/back_button"
             android:src="@drawable/ic_arrow_back"
-            app:tint="@color/black">
+            app:tint="?android:attr/textColorPrimary">
 
         </ImageButton>
 
@@ -33,7 +33,7 @@
             android:layout_marginStart="30dp"
             android:fontFamily="@font/nunito_bold"
             android:text="@string/daily_treatment"
-            android:textColor="@color/black">
+            android:textColor="?android:attr/textColorPrimary">
 
         </TextView>
     </androidx.appcompat.widget.Toolbar>
@@ -42,10 +42,10 @@
         android:id="@+id/month_year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="?android:attr/colorBackground"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/month_year"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +122,7 @@
         android:layout_marginBottom="15dp"
         android:gravity="center_horizontal|top"
         android:text="@string/estimated_time"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/estimated_time"
         app:layout_constraintEnd_toEndOf="@+id/estimated_time"
@@ -136,7 +136,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center_horizontal|bottom"
         android:text="@string/estimated_days1"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/estimated_time"
         app:layout_constraintEnd_toEndOf="@+id/estimated_time"
@@ -208,7 +208,7 @@
                 android:fontFamily="@font/nunito_semibold"
                 android:gravity="center"
                 android:text="@string/today_treatment"
-                android:textColor="@color/black"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -229,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_regular"
                     android:text="8.00 AM"
-                    android:textColor="@color/black" />
+                    android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -257,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_regular"
                     android:text="9.00 AM"
-                    android:textColor="@color/black" />
+                    android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -285,7 +285,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_regular"
                     android:text="12.00 AM"
-                    android:textColor="@color/black" />
+                    android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -313,7 +313,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_regular"
                     android:text="18.00 PM"
-                    android:textColor="@color/black" />
+                    android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -341,7 +341,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_regular"
                     android:text="12.00 AM"
-                    android:textColor="@color/black" />
+                    android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:layout_width="match_parent"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,57 +7,49 @@
     tools:context=".ui.home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="@color/white"
+        android:background="?android:attr/colorBackground"
         app:elevation="0dp">
 
-        <FrameLayout
-            android:id="@+id/toolbar_profile"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.Toolbar
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userProfile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_avatar_profile_hd" />
+
+            <TextView
+                android:id="@+id/user_name_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/greetings_user" />
+
+            <TextView
+                android:id="@+id/user_location"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/nunito_bold"
+                android:gravity="end"
+                android:text="@string/user_location"
+                app:drawableRightCompat="@drawable/ic_location" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/userProfile"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_avatar_profile_hd">
-                </de.hdodenhof.circleimageview.CircleImageView>
-
-                <TextView
-                    android:id="@+id/user_name_toolbar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:text="@string/greetings_user"
-                    android:fontFamily="@font/nunito_bold">
-                </TextView>
-                <TextView
-                    android:id="@+id/user_location"
-                    android:layout_width="match_parent"
-                    android:gravity="end"
-                    android:layout_height="wrap_content"
-                    android:text="@string/user_location"
-                    android:layout_marginEnd="20dp"
-                    android:fontFamily="@font/nunito_bold"
-                    app:drawableRightCompat="@drawable/ic_location">
-                </TextView>
-
-            </androidx.appcompat.widget.Toolbar>
-
-        </FrameLayout>
-
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -72,10 +64,7 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </FrameLayout>
-
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/titleMenu"
@@ -83,11 +72,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="318dp"
                 android:fontFamily="@font/nunito_extrabold"
                 android:text="@string/services"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/menu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/infoData" />
@@ -103,8 +90,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titleMenu">
 
-
-                <!-- Service 2 -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,10 +110,10 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:layout_marginTop="10dp"
+                            android:contentDescription="@string/self_care"
                             android:padding="10dp"
                             android:src="@drawable/ic_cup_coco"
-                            app:tint="@color/white"
-                            android:contentDescription="@string/self_care"/>
+                            app:tint="@color/white" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -144,5 +129,5 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</FrameLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

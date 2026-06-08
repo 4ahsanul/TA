@@ -24,7 +24,7 @@
         android:textStyle="bold"
         android:letterSpacing="-0.04"
         android:textSize="12sp"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:gravity="center_horizontal|top"
         android:layout_marginTop="1dp"
         />
@@ -36,7 +36,7 @@
         android:layout_marginTop="10dp"
         android:letterSpacing="-0.04"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="14sp"
         />

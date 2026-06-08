@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="spacing_medium">10dp</dimen>
-    <dimen name="onboarding_item_horizontal_padding">32</dimen>
+    <!-- Spacing -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">12dp</dimen>
     <dimen name="spacing_xxx_medium">10dp</dimen>
-    <dimen name="onboarding_button_height">50dp</dimen>
+    <dimen name="spacing_list">13dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_xlarge">20dp</dimen>
+    <dimen name="spacing_xxlarge">24dp</dimen>
+    <dimen name="spacing_xxxlarge">30dp</dimen>
+    <dimen name="spacing_xxxxlarge">32dp</dimen>
+    <dimen name="spacing_xxxxxlarge">40dp</dimen>
+
+    <!-- Content Padding -->
+    <dimen name="padding_screen">20dp</dimen>
+    <dimen name="padding_card">16dp</dimen>
+
+    <!-- Button -->
+    <dimen name="button_height">50dp</dimen>
+    <dimen name="button_corner_radius">12dp</dimen>
+    <dimen name="button_text_size">15sp</dimen>
+
+    <!-- Card -->
+    <dimen name="corner_radius_small">10dp</dimen>
+    <dimen name="corner_radius_medium">12dp</dimen>
+    <dimen name="corner_radius_large">16dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_height_compact">156dp</dimen>
+
+    <!-- Toolbar -->
+    <dimen name="toolbar_height">60dp</dimen>
+    <dimen name="toolbar_start_margin">30dp</dimen>
+
+    <!-- Example Images -->
+    <dimen name="example_image_size">70dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_headline">20sp</dimen>
+    <dimen name="text_title">16sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_caption">12sp</dimen>
+
+    <!-- Avatar -->
+    <dimen name="avatar_small">40dp</dimen>
+    <dimen name="avatar_large">100dp</dimen>
+    <dimen name="avatar_border">2dp</dimen>
 </resources>

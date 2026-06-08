@@ -1,30 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="cornflower">#6A7AFA</color>
-    <color name="blue_ivy">#3392C5</color>
+    <!-- Primary Colors - Healthcare Blue-Teal Theme -->
+    <color name="primary">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="primary_dark">#0D47A1</color>
+    <color name="on_primary">#FFFFFF</color>
+
+    <!-- Secondary Colors - Mint Green -->
+    <color name="secondary">#26A69A</color>
+    <color name="secondary_light">#B2DFDB</color>
+    <color name="secondary_dark">#00897B</color>
+    <color name="on_secondary">#FFFFFF</color>
+
+    <!-- Accent Colors -->
+    <color name="accent_coral">#FF7043</color>
+    <color name="accent_orange">#FF9D00</color>
+
+    <!-- Background & Surface -->
+    <color name="background">#F8FAFE</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F1F2F6</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#263238</color>
+    <color name="text_secondary">#78909C</color>
+    <color name="text_hint">#B0BEC5</color>
+    <color name="text_on_primary">#FFFFFF</color>
+
+    <!-- Status Colors -->
+    <color name="success">#66BB6A</color>
+    <color name="error">#EF5350</color>
+    <color name="warning">#FFA726</color>
+    <color name="info">#42A5F5</color>
+
+    <!-- Semantic / Legacy Compatibility -->
+    <color name="cornflower">#1976D2</color>
+    <color name="blue_ivy">#42A5F5</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_cornflower">#B5BDFC</color>
-    <color name="light_blue_ivy">#9AC9E3</color>
+    <color name="light_cornflower">#BBDEFB</color>
+    <color name="light_blue_ivy">#90CAF9</color>
     <color name="porcelain">#F1F2F6</color>
     <color name="quil_grey">#D4D4D4</color>
     <color name="cloudy_grey">#686868</color>
     <color name="black">#FF000000</color>
     <color name="water">#EFF1FF</color>
     <color name="aqua_haze">#F3F3F3</color>
-    <color name="pastel_pink">#FDD3D3</color>
-    <color name="red">#FF0000</color>
-    <color name="pastel_magenta">#FA90C2</color>
+    <color name="pastel_pink">#FFCDD2</color>
+    <color name="red">#EF5350</color>
+    <color name="pastel_magenta">#26A69A</color>
     <color name="orange_peel">#FF9D00</color>
-    <color name="paris_green">#58CF99</color>
+    <color name="paris_green">#66BB6A</color>
 
     <!--  Dark Theme Color  -->
     <color name="rangoon_green">#171717</color>
     <color name="black_eel">#444444</color>
-    <color name="rich_carmine">#DA0037</color>
+    <color name="rich_carmine">#EF5350</color>
 
     <!--  Extra Color  -->
-    <color name="lovely_purple">#764AF1</color>
-    <color name="crocus_purple">#9772FB</color>
+    <color name="lovely_purple">#5C6BC0</color>
+    <color name="crocus_purple">#7986CB</color>
     <color name="cyan">#40DFEF</color>
     <color name="orange_yellow">#FFB72B</color>
 </resources>
