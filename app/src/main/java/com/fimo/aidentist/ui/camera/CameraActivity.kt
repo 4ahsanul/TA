@@ -224,9 +224,6 @@ class CameraActivity : AppCompatActivity() {
                 cameraProvider.bindToLifecycle(
                     this, cameraSelector, useCaseGroup
                 )
-                cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture
-                )
             } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }
@@ -245,7 +242,7 @@ class CameraActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(
                     this,
-                    "Permissions not granted by the user.",
+                    getString(R.string.msg_camera_permission_denied),
                     Toast.LENGTH_SHORT
                 ).show()
             }

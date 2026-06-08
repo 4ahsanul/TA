@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.fimo.aidentist.R
 import com.fimo.aidentist.data.model.Resource
 import com.fimo.aidentist.databinding.FragmentHomeBinding
+import com.fimo.aidentist.helper.Constant
 import com.fimo.aidentist.ui.analisis.*
 import com.fimo.aidentist.ui.menu.treatment.DailyTreatmentActivity
 import com.squareup.picasso.Picasso
@@ -23,10 +24,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val homeViewModel: HomeViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        homeViewModel.loadDiseaseData()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +43,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        homeViewModel.loadDiseaseData()
         observeUserProfile()
         observeDiseaseState()
     }
@@ -58,7 +56,7 @@ class HomeFragment : Fragment() {
                         Picasso.get().load(user.photoUrl).into(binding.userProfile)
                     } else {
                         Picasso.get()
-                            .load("https://raw.githubusercontent.com/4ahsanul/Workstation/main/ic_avatar_profile_hd-removebg-preview.png?token=GHSAT0AAAAAAB5JEK2JD7JX7E53JWN7L42MY6QOFWA")
+                            .load(Constant.DEFAULT_AVATAR_URL)
                             .into(binding.userProfile)
                     }
                     binding.userNameToolbar.text = user.displayName
@@ -74,7 +72,7 @@ class HomeFragment : Fragment() {
                     is Resource.Success -> {
                         val data = state.data
                         val disease = data?.get("disease") as? String
-                        if (disease != null && disease != "null") {
+                        if (!disease.isNullOrBlank() && disease != "null") {
                             routeDiseaseFragment(disease)
                         } else {
                             replaceFragment(BlankAnalisisFragment())
@@ -93,9 +91,9 @@ class HomeFragment : Fragment() {
 
     private fun routeDiseaseFragment(disease: String) {
         when (disease) {
-            "Healthy" -> replaceFragment(AnalisisFragment3())
-            "Dental Discoloration" -> replaceFragment(AnalisisFragment2())
-            "Periodontal Disease" -> replaceFragment(AnalisisFragment())
+            "Healthy" -> replaceFragment(HealthyFragment())
+            "Dental Discoloration" -> replaceFragment(DentalDiscolorationFragment())
+            "Periodontal Disease" -> replaceFragment(PeriodontalDiseaseFragment())
             else -> replaceFragment(BlankAnalisisFragment())
         }
     }
@@ -107,8 +105,8 @@ class HomeFragment : Fragment() {
         trans.commit()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

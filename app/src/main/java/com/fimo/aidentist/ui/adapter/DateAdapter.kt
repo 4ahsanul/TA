@@ -11,7 +11,7 @@ class DateAdapter : RecyclerView.Adapter<DateAdapter.ViewHolder>() {
     private val hari = arrayOf(
         "Sun",
         "Mon",
-        "Thu",
+        "Tue",
         "Wed",
         "Thu",
         "Fri",

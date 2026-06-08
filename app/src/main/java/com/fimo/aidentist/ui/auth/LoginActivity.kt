@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.fimo.aidentist.MainActivity
+import com.fimo.aidentist.R
 import com.fimo.aidentist.data.model.Resource
 import com.fimo.aidentist.databinding.ActivityLoginBinding
 import kotlinx.coroutines.launch
@@ -92,17 +93,17 @@ class LoginActivity : AppCompatActivity() {
             val pass = binding.passwordEditText.text.toString().trim()
 
             if (email.isEmpty()) {
-                binding.emailEditText.error = "Email haru diisi"
+                binding.emailEditText.error = getString(R.string.error_email_required)
                 binding.emailEditText.requestFocus()
                 return@setOnClickListener
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                binding.emailEditText.error = "Email tidak valid"
+                binding.emailEditText.error = getString(R.string.error_email_invalid)
                 binding.emailEditText.requestFocus()
                 return@setOnClickListener
             }
             if (pass.isEmpty() || pass.length < 6) {
-                binding.passwordEditText.error = "Password harus lebih dari 6 Karakter"
+                binding.passwordEditText.error = getString(R.string.error_password_length)
                 binding.passwordEditText.requestFocus()
                 return@setOnClickListener
             }

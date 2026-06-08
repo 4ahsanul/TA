@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (!allPermissionsGranted()) {
-                Toast.makeText(this, "Tidak mendapatkan akses.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.msg_permission_denied), Toast.LENGTH_SHORT).show()
                 finish()
             }
         }

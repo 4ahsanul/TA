@@ -14,7 +14,7 @@ import kotlin.Comparator
 
 class Classifier(assetManager: AssetManager, modelPath: String, labelPath: String, inputSize: Int) {
     private var interpreter: Interpreter
-    private var lableList: List<String>
+    private var labelList: List<String>
     private val INPUT_SIZE: Int = inputSize
     private val PIXEL_SIZE: Int = 3
     private val IMAGE_MEAN = 0
@@ -37,7 +37,7 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
         options.setNumThreads(5)
         options.setUseNNAPI(true)
         interpreter = Interpreter(loadModelFile(assetManager, modelPath), options)
-        lableList = loadLabelList(assetManager, labelPath)
+        labelList = loadLabelList(assetManager, labelPath)
     }
 
     private fun loadModelFile(assetManager: AssetManager, modelPath: String): MappedByteBuffer {
@@ -61,7 +61,7 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
     fun recognizeImage(bitmap: Bitmap): List<Recognition> {
         val scaledBitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false)
         val byteBuffer = convertBitmapToByteBuffer(scaledBitmap)
-        val result = Array(1) { FloatArray(lableList.size) }
+        val result = Array(1) { FloatArray(labelList.size) }
         interpreter.run(byteBuffer, result)
         return getSortedResult(result)
     }
@@ -87,7 +87,7 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
     }
 
     private fun getSortedResult(labelProbArray: Array<FloatArray>): List<Classifier.Recognition> {
-        Log.d("Classifier", "List Size:(%d, %d, %d)".format(labelProbArray.size,labelProbArray[0].size,lableList.size))
+        Log.d("Classifier", "List Size:(%d, %d, %d)".format(labelProbArray.size,labelProbArray[0].size,labelList.size))
 
         val pq = PriorityQueue(
             MAX_RESULTS,
@@ -96,11 +96,11 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
                 -> java.lang.Float.compare(confidence1, confidence2) * -1
             })
 
-        for (i in lableList.indices) {
+        for (i in labelList.indices) {
             val confidence = labelProbArray[0][i]
             if (confidence >= THRESHOLD) {
                 pq.add(Classifier.Recognition("" + i,
-                    if (lableList.size > i) lableList[i] else "Unknown", confidence)
+                    if (labelList.size > i) labelList[i] else "Unknown", confidence)
                 )
             }
         }

@@ -15,7 +15,7 @@ import com.fimo.aidentist.ui.adapter.DateAdapter
 class TreatmentFragment : Fragment() {
     private lateinit var adapter: DateAdapter
     private var _binding: FragmentTreatmentBinding? = null
-    val binding get() = _binding!!
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,5 +41,10 @@ class TreatmentFragment : Fragment() {
         }
         binding.progressBar.progress = 100
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -25,7 +25,7 @@
         android:label="activity_camera_result"
         tools:layout="@layout/activity_camera_result" />
     <fragment
-        android:id="@+id/analisisFragment"
-        android:name="com.fimo.aidentist.ui.analisis.AnalisisFragment"
-        android:label="AnalisisFragment" />
+        android:id="@+id/periodontalDiseaseFragment"
+        android:name="com.fimo.aidentist.ui.analisis.PeriodontalDiseaseFragment"
+        android:label="PeriodontalDiseaseFragment" />
 </navigation>

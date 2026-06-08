@@ -41,7 +41,7 @@ class SignUpActivity : AppCompatActivity() {
             authViewModel.signUpState.collect { state ->
                 when (state) {
                     is Resource.Success -> {
-                        Toast.makeText(this@SignUpActivity, "Register Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@SignUpActivity, getString(R.string.msg_register_success), Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -110,10 +110,10 @@ class SignUpActivity : AppCompatActivity() {
                 if (password == repass) {
                     authViewModel.signUp(email, password)
                 } else {
-                    Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.error_password_mismatch), Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Tidak boleh ada kolom yang kosong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.error_fields_empty), Toast.LENGTH_SHORT).show()
             }
         }
     }
