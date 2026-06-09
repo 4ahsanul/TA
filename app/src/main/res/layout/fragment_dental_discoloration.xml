@@ -12,10 +12,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/prediction_card"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_small"
             app:cardCornerRadius="@dimen/corner_radius_large"
+            app:cardElevation="@dimen/card_elevation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -23,38 +24,34 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/card_border"
-                android:orientation="vertical">
+                android:background="@color/white"
+                android:padding="@dimen/spacing_large">
 
                 <TextView
                     android:id="@+id/dental_prediction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:fontFamily="@font/nunito_bold"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
                     android:text="@string/discoloration"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="15sp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/desc_disease"
-                    android:layout_width="260dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="@dimen/spacing_small"
-                    android:layout_marginBottom="32dp"
-                    android:fontFamily="@font/nunito_regular"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_marginBottom="@dimen/spacing_large"
+                    android:fontFamily="@font/poppins_regular"
                     android:justificationMode="inter_word"
-                    android:paddingStart="@dimen/spacing_xs"
-                    android:paddingEnd="25dp"
                     android:text="@string/desc_discoloration"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/button"
@@ -62,9 +59,9 @@
 
                 <ImageView
                     android:id="@+id/button"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="@dimen/spacing_xxlarge"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="@dimen/spacing_medium"
                     android:background="@drawable/background_button_accent_disco"
                     android:contentDescription="@string/logo_discoloration"
                     android:padding="@dimen/spacing_medium"
@@ -79,11 +76,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/disease_desc_card"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_small"
             android:layout_marginTop="@dimen/spacing_list"
             app:cardCornerRadius="@dimen/corner_radius_large"
+            app:cardElevation="@dimen/card_elevation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/prediction_card">
@@ -91,39 +89,39 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/card_border"
-                android:orientation="vertical">
+                android:background="@color/white"
+                android:padding="@dimen/spacing_large">
 
                 <TextView
                     android:id="@+id/description_disease"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:fontFamily="@font/nunito_bold"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
                     android:text="@string/apakah_berbahaya"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="15sp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/desc_tingkat_bahaya"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/spacing_xlarge"
-                    android:layout_marginBottom="@dimen/spacing_xlarge"
-                    android:fontFamily="@font/nunito_regular"
+                    android:layout_marginHorizontal="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginBottom="@dimen/spacing_large"
+                    android:fontFamily="@font/poppins_regular"
                     android:justificationMode="inter_word"
                     android:text="@string/risk_dicoloration"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/description_disease"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@id/description_disease" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -131,11 +129,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/similiar_card"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="@dimen/card_height_compact"
             android:layout_marginHorizontal="@dimen/spacing_small"
             android:layout_marginTop="@dimen/spacing_list"
             app:cardCornerRadius="@dimen/corner_radius_large"
+            app:cardElevation="@dimen/card_elevation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/disease_desc_card">
@@ -143,19 +142,19 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/card_border"
-                android:orientation="vertical">
+                android:background="@color/white"
+                android:padding="@dimen/spacing_large">
 
                 <TextView
                     android:id="@+id/similiar_photos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:fontFamily="@font/nunito_bold"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
                     android:text="@string/similiar"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="15sp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -221,7 +220,6 @@
                 </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

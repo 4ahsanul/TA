@@ -28,7 +28,9 @@ import com.fimo.aidentist.databinding.LayoutCameraBinding
 import com.fimo.aidentist.helper.Constant
 import com.fimo.aidentist.helper.PreferenceHelper
 import com.fimo.aidentist.ml.Classifier
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -57,7 +59,6 @@ class CameraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initClassifier()
         sharedPref = PreferenceHelper(this)
 
         binding.check.visibility = View.GONE
@@ -65,6 +66,12 @@ class CameraActivity : AppCompatActivity() {
         binding.layout.visibility = View.GONE
 
         cameraBinding = binding.cameraView
+
+        // Load classifier in background to prevent ANR
+        lifecycleScope.launch(Dispatchers.IO) {
+            initClassifier()
+            Log.d(TAG, "Classifier initialized on background thread")
+        }
 
         binding.retake.setOnClickListener {
             binding.cameraView.root.visibility = View.VISIBLE
@@ -76,6 +83,10 @@ class CameraActivity : AppCompatActivity() {
         }
 
         binding.check.setOnClickListener {
+            if (!::classifier.isInitialized) {
+                Toast.makeText(this, "Model masih loading, coba lagi...", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val bitmap = ((binding.image).drawable as BitmapDrawable).bitmap
             cameraViewModel.classifyAndSave(bitmap, classifier)
         }

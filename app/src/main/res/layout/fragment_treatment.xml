@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     tools:context=".ui.menu.treatment.DailyTreatmentActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/toolbar_height"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,19 +21,16 @@
             android:background="?attr/selectableItemBackground"
             android:contentDescription="@string/back_button"
             android:src="@drawable/ic_arrow_back"
-            app:tint="?android:attr/textColorPrimary">
-
-        </ImageButton>
+            app:tint="?android:attr/textColorPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:fontFamily="@font/nunito_bold"
+            android:layout_marginStart="@dimen/toolbar_start_margin"
+            android:fontFamily="@font/poppins_semibold"
             android:text="@string/daily_treatment"
-            android:textColor="?android:attr/textColorPrimary">
-
-        </TextView>
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/text_title" />
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
@@ -43,23 +38,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/colorBackground"
-        android:gravity="center_horizontal|center_vertical"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
         android:text="@string/month_year"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="21sp"
+        android:textSize="@dimen/text_headline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDate"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginHorizontal="@dimen/spacing_xxxlarge"
+        android:layout_marginTop="@dimen/spacing_medium"
         android:orientation="horizontal"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,9 +62,9 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="@dimen/spacing_medium"
         android:indeterminateOnly="false"
         android:progressDrawable="@drawable/circle"
         android:rotation="-90"
@@ -84,46 +77,47 @@
         android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
         android:text="@string/days_progress1"
-        android:textSize="30sp"
+        android:textColor="@color/text_primary"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
+    <!-- Info boxes responsive using chain -->
     <View
         android:id="@+id/estimated_time"
-        android:layout_width="108dp"
+        android:layout_width="0dp"
         android:layout_height="36dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/spacing_xlarge"
         android:background="@drawable/box_category"
         app:layout_constraintEnd_toStartOf="@+id/treatment_goals"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar">
-
-    </View>
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@+id/list_treatment"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <View
         android:id="@+id/treatment_goals"
-        android:layout_width="108dp"
+        android:layout_width="0dp"
         android:layout_height="36dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginStart="@dimen/spacing_medium"
         android:background="@drawable/box_home"
         app:layout_constraintBottom_toBottomOf="@+id/estimated_time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/estimated_time"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="@+id/list_treatment"
+        app:layout_constraintStart_toEndOf="@+id/estimated_time"
+        app:layout_constraintTop_toTopOf="@+id/estimated_time" />
 
     <TextView
         android:id="@+id/estimated_time_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:gravity="center_horizontal|top"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/poppins_regular"
         android:text="@string/estimated_time"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="12sp"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
         app:layout_constraintBottom_toBottomOf="@+id/estimated_time"
         app:layout_constraintEnd_toEndOf="@+id/estimated_time"
         app:layout_constraintStart_toStartOf="@+id/estimated_time"
@@ -133,11 +127,11 @@
         android:id="@+id/estimated_time_angka"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center_horizontal|bottom"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/estimated_days1"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="12sp"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_caption"
         app:layout_constraintBottom_toBottomOf="@+id/estimated_time"
         app:layout_constraintEnd_toEndOf="@+id/estimated_time"
         app:layout_constraintStart_toStartOf="@+id/estimated_time"
@@ -147,9 +141,11 @@
         android:id="@+id/treatment_goals_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/poppins_regular"
         android:text="@string/treatment"
-        android:textSize="12sp"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
         app:layout_constraintBottom_toBottomOf="@+id/treatment_goals"
         app:layout_constraintEnd_toEndOf="@+id/treatment_goals"
         app:layout_constraintStart_toStartOf="@+id/treatment_goals"
@@ -159,9 +155,11 @@
         android:id="@+id/treatment_goals_angka"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/estimated_goals1"
-        android:textSize="12sp"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_caption"
         app:layout_constraintBottom_toBottomOf="@+id/treatment_goals"
         app:layout_constraintEnd_toEndOf="@+id/treatment_goals"
         app:layout_constraintStart_toStartOf="@+id/treatment_goals"
@@ -171,186 +169,212 @@
         android:id="@+id/warning_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="@dimen/spacing_xxxlarge"
+        android:fontFamily="@font/poppins_medium"
         android:gravity="center"
         android:text="@string/estimated_warn"
-        android:textColor="@color/red"
-        android:textSize="12sp"
+        android:textColor="@color/error"
+        android:textSize="@dimen/text_caption"
         app:layout_constraintEnd_toEndOf="@id/treatment_goals"
         app:layout_constraintStart_toStartOf="@+id/estimated_time"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar">
-
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/list_treatment"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        app:cardCornerRadius="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_xlarge"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_large"
+        app:cardCornerRadius="@dimen/corner_radius_large"
+        app:cardElevation="@dimen/card_elevation"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/warning_text">
 
         <LinearLayout
             android:id="@+id/list_treatment_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/card_border"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/nunito_semibold"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
                 android:text="@string/today_treatment"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp" />
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_title" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp">
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_large"
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_time_service" />
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:src="@drawable/ic_time_service"
+                    app:tint="@color/primary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="8.00 AM"
-                    android:textColor="?android:attr/textColorPrimary" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_caption" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Liroice"
-                    android:textAlignment="textEnd" />
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="12dp">
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_large"
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_cup_coco" />
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:src="@drawable/ic_cup_coco"
+                    app:tint="@color/secondary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="9.00 AM"
-                    android:textColor="?android:attr/textColorPrimary" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_caption" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Pepper Mint"
-                    android:textAlignment="textEnd" />
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp">
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_large"
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_time_service" />
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:src="@drawable/ic_time_service"
+                    app:tint="@color/primary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="12.00 AM"
-                    android:textColor="?android:attr/textColorPrimary" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_caption" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Liroice"
-                    android:textAlignment="textEnd" />
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp">
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_large"
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_time_service" />
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:src="@drawable/ic_time_service"
+                    app:tint="@color/primary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="18.00 PM"
-                    android:textColor="?android:attr/textColorPrimary" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_caption" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Liroice"
-                    android:textAlignment="textEnd" />
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp">
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_large"
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_cup_coco" />
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:src="@drawable/ic_cup_coco"
+                    app:tint="@color/secondary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="12.00 AM"
-                    android:textColor="?android:attr/textColorPrimary" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_caption" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="Pepper Mint"
-                    android:textAlignment="textEnd" />
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_caption" />
             </LinearLayout>
-
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
